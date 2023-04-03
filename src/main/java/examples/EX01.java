@@ -31,18 +31,18 @@ public class EX01 {
         int charge = money - total;
 
         System.out.println("  ");
-        System.out.println(" [ 음식나라 ] \n");
-        System.out.println(" ------------------------ \n");
+        System.out.print(" [ 음식나라 ] \n");
+        System.out.print(" ------------------------ \n");
         System.out.println(" 소주\t\t"+sj_qty+"\t\t"+soju*sj_qty);
         System.out.println(" 너나치킨\t"+chck_qty+"\t\t"+chicken);
-        System.out.println(" ------------------------ \n");
+        System.out.print(" ------------------------ \n");
         System.out.printf(" 과세합계\t\t\t%d\n",total);
-        System.out.printf(" 부가세\t\t\t\t%f\n",vat);
-        System.out.println(" ------------------------ \n");
+        System.out.printf(" 부가세\t\t\t\t%.0f\n",vat);
+        System.out.print(" ------------------------ \n");
         System.out.printf(" 총합계\t\t\t\t%d\n",money);
         System.out.printf(" 받은금액\t\t\t%d\n",total);
         System.out.printf(" 잔돈\t\t\t\t%d\n",charge);
-        System.out.println(" ------------------------ \n");
+        System.out.print(" ------------------------ \n");
         System.out.println(" 2023. 01. 20\t 13:06:24 ");
 
 
