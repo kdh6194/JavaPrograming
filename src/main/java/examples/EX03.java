@@ -175,15 +175,18 @@ public class EX03 {
 
         // Scanner의 nextInt() 메서드를 호출한 후에 nextLine() 메서드를 호출하면
         // 입력 버퍼에 남아있는 개행문자(\n)를 읽어오는 문제입니다
-        // 그래서 sc.nextLine() 개행문자를 읽어오는것
+        // 데이터 타입이 다른경우 생기는 문제로서 scanner의 타입을 문자열로 일치시켜
+        // 그 후 데이터 타입을 형변환하여 사용하는 방법이 제일 빠른듯 하다.
+        // 다른 방법으로는 문자열에 .next()를 사용하여 쓰는 것도 하나의 방법이다
+
         System.out.println("결혼여부");
-        String marry = sc.nextLine().trim();
-        sc.nextLine();
+        String marry = sc.next().replace(" ","");
+
         System.out.println("연봉 답해주세요");
         int salry = sc.nextInt();
 
 
-        if (marry.equals("네") || marry.equals("yes")){
+        if (marry.equals("yes")){
             if(salry > 6000){
                 double tax = salry * 0.35;
                 System.out.println(tax);
