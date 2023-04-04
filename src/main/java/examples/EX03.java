@@ -186,7 +186,7 @@ public class EX03 {
         int salry = sc.nextInt();
 
 
-        if (marry.equals("yes")){
+        if (marry.equals("yes")||marry.equals("네")){
             if(salry > 6000){
                 double tax = salry * 0.35;
                 System.out.println(tax);
@@ -206,12 +206,21 @@ public class EX03 {
         }
 
         //--------------------------------------------------
+//        System.out.println("원하는 연도를 검색하세요");
+//        int year = sc.nextInt();
+//
+//        boolean checkYear = year%4 == 0 && year%100 != 0 || year%400 ==0 ;
+//        String leapYear = checkYear ? "윤년":"윤년아님";
+//        System.out.println(leapYear);
+
         System.out.println("원하는 연도를 검색하세요");
         int year = sc.nextInt();
 
-        boolean checkYear = year%4 == 0 && year%100 != 0 || year%400 ==0 ;
-        String leapYear = checkYear ? "윤년":"윤년아님";
-        System.out.println(leapYear);
+        if (year%4 == 0 && year%100 != 0 || year%400 ==0){
+            System.out.printf("입력하신 %s 연도는 윤년입니다\n",year);
+        }else{
+            System.out.printf("입력하신 %s 연도는 윤년이 아닙니다\n",year);
+        }
 
         //----------------------------------------------
 
@@ -230,6 +239,9 @@ public class EX03 {
         //--------------------------------------------
 
         // System.in.read를 쓰려면 java.io.IOException이 필요하고
+        // System.in.read() 키보드로부터 문자 하나를 입력받은
+        // 단, 입력받은 문자는 ASCII코드값(10진수)이기 때문에
+        // char형으로 변환 필요
         // try catch 구문이 필요하다. 물론 upperCase도 필요하다.
 
         System.out.println("원하는 소문자를 하나만 입력하세요");
@@ -245,7 +257,8 @@ public class EX03 {
             char va = Character.toUpperCase((char) input);
             System.out.println("대문자: " + va);
         }catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("잘못입력하셨습니다");
+            System.exit(1);
         }
 
         //-----------------------------------------------
@@ -268,6 +281,63 @@ public class EX03 {
         }while (num1 != num2);
 
             System.out.println("빙고");
+
+
+        System.out.println("카드번호를 입력하세요");
+        int inputnum = sc.nextInt();
+        String card = String.valueOf(inputnum);
+        String checkcard1 = card.substring(0,1);
+        String checkcard = card.substring(0,2);
+
+
+
+        if(checkcard.equals("35")){
+            String cardnum = card.substring(2,6);
+            String cdname = "JCB카드";
+            if(cardnum.equals("6317")){
+                System.out.printf("%s - 농협카드",cdname);
+            }
+            if(cardnum.equals("6901")){
+                System.out.printf("%s - 신한카드",cdname);
+            }
+            if(cardnum.equals("6912")){
+                System.out.printf("%s - 국민카드",cdname);
+            }
+        }
+        else if(checkcard1.equals("4")){
+            String cardnum = card.substring(1,6);
+            String cdname = "비자카드";
+            if(cardnum.equals("04825")){
+                System.out.printf("%s - 비씨카드",cdname);
+            }
+            if(cardnum.equals("38676")){
+                System.out.printf("%s - 신한카드",cdname);
+            }
+            if(cardnum.equals("57973")){
+                System.out.printf("%s - 국민은행",cdname);
+            }
+        }
+        else if(checkcard1.equals("5")){
+            String cardnum = card.substring(1,6);
+            String cdname = "마스터 카드";
+            if(cardnum.equals("15594")){
+                System.out.printf("%s - 신한카드",cdname);
+            }
+            if(cardnum.equals("24353")){
+                System.out.printf("%s - 외환카드",cdname);
+            }
+            if(cardnum.equals("40926")){
+                System.out.printf("%s - 국민은행",cdname);
+            }
+        }else {
+            System.out.println("없는 카드번호이거나 잘못 입력된 카드번호입니다.");
+        }
+
+
+
+
+
+
 
     }
 }
