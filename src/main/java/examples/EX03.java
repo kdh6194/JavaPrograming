@@ -1,5 +1,6 @@
 package examples;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.io.InputStream;
 import java.io.IOException;
@@ -265,7 +266,9 @@ public class EX03 {
 
         // do while 구문으로 작성하면 된다
 
-        int num2 = 35;
+
+        Random rnd = new Random();
+        int num2 = rnd.nextInt(100)+1;
         int num1;
 
         System.out.println("1-100까지 숫자중에 아무거나 입력하세여");
