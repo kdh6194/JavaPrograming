@@ -1,6 +1,6 @@
 package honeybee;
 
-public class CO1DateType {
+public class C01DateType {
 
     public static void main(String[] args) {
         /*변수와 자료형
