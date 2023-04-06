@@ -78,5 +78,25 @@ public class EX04 {
 
 
 
+        int[] jumin = {1,2,3,4,5,6,1,2,3,4,5,6,7};
+        int[] weight = {1,2,3,4,5,6,1,2,3,4,5,6};
+
+        int sum = 0;
+
+        // sum += jumin[0] * 2; 이런 식으로 구성되어야함
+
+        for (int i = 0; i < weight.length; i++) {
+            sum += jumin[i] * weight[i];
+        }
+
+        int mod = 11- (sum % 11);
+
+        String result = "주민번호 불일치";
+        if (jumin[12] == mod%10){
+            result = "주민번호 일치";
+        }
+        System.out.println(result+"/"+mod );
+
+
     }
 }
