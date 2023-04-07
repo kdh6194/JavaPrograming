@@ -60,6 +60,49 @@ public class C09Method {
         return result;
     }
 
+    public static void readSungJuk(String[] stu,int[] kor,int[] eng,int[] math) {
+        Scanner sc = new Scanner(System.in);
+        for(int i =0; i < stu.length; ++i) {
+            System.out.print((i + 1) + "학생은? ");
+            stu[i] = sc.next();
+            kor[i] = sc.nextInt();
+            eng[i] = sc.nextInt();
+            math[i] = sc.nextInt();
+        }
+    }
+    public static void checkSungJuk(String[] stu,int[] kor,int[] eng,int[] math,
+                                        int[] tot1,double[] avg1,String[] grd) {
+        for (int i = 0; i < stu.length; i++) {
+            tot1[i] = kor[i] + eng[i] + math[i];
+            avg1[i] = tot1[i] / 3.0;
+
+            switch ((int) (avg1[i] / 10)) {
+                case 10:
+                case 9:
+                    grd[i] = "수";
+                    break;
+                case 8:
+                    grd[i] = "우";
+                    break;
+                case 7:
+                    grd[i] = "미";
+                    break;
+                case 6:
+                    grd[i] = "양";
+                    break;
+                default:
+                    grd[i] = "가";
+                    break;
+            }
+        }
+    }
+    public static void printSungJuk(String[] stu,int[] kor,int[] eng,int[] math,int[] tot1,double[] avg1,String[] grd) {
+            for (int i = 0; i < stu.length; i++) {
+                System.out.printf("%s,%d,%d,%d,%d,%.1f,%s\n",stu[i],kor[i],eng[i],math[i],tot1[i],avg1[i],grd[i]);
+            }
+
+    }
+
     public static void main(String[] args) {
         // 메서드
         // 특정 작업(코드블록)을 여러번 반복해야 하는 경우
@@ -79,13 +122,39 @@ public class C09Method {
         int floor = 5;
         System.out.println(showPyramid(floor));
 
+
+        // 성적 처리 프로그램
+        //메서드로 기능을 모듈화 시켜 작성
+        // 변수만 main에서 선언하여 인수로 적용하고
+        // 호출하는 메서드에서 변수를 인자로 받아
+        // 메서드안에서 동작하는 구문으로 만드는것
+        // 리액트랑 비슷한 면이 있다. 다른 언어들도 마찬가지겠지만
+
+        // 만약 추가 항목이 생겼다면 main에서 변수 생성하고 인자,인수 수정하고
+        // 호출하는 메서드도 수정해야하기에 유지보수의 범위가 넓어진다.
+        String[] stu = new String[3];
+        int[] kor = new int[3];
+        int[] eng = new int[3];
+        int[] math = new int[3];
+
+        int[] tot1 = new int[3];
+        double[] avg1 = new double[3];
+        String[] grd = new String[3];
+
+        readSungJuk(stu,kor,eng,math);
+        checkSungJuk(stu,kor,eng,math,tot1,avg1,grd);
+        printSungJuk(stu,kor,eng,math,tot1,avg1,grd);
+
+
         // 클래스 호출
         // 메서드 매개변수자리에 String[] args는 new String[]{} 작성하면 값을 받는다.
         // 근데 값을 받는지 않받는지 확인을 안해봤다.
         // for (int i = 0; i < args.length; i++) {
         //       System.out.println(args[i]);
         //     }  배열의 값을 확인하는 코드
+        // 클래스로 호출하는 인자,인수도 변수로 만들어 사용하면 된다.
+        String[] chat = new String[]{"Method","Loop","Array","Condition","Type","Scanner","Random"};
 
-        Hello.main(new String[]{"Method","Loop","Array","Condition","Type","Scanner","Random"});
+        Hello.main(chat);
     }
 }
