@@ -1,6 +1,6 @@
 package examples;
 
-import honeybee.SungJukVO;
+import honeybee.project.sungjuk.model.SungJukVO;
 
 import java.util.Scanner;
 
