@@ -159,7 +159,7 @@ public class C19Exception {
         // 사용자 정의 예외 - 개발자 입맛에 맞는 예외메세지 출력 가능
         // 사용자 정의 예외는 Exception 클래스를 상속해서 만들어야 함
 
-        for (int i = 0; i <= 3; i++) {
+
             System.out.println(" !!1 ~ 9 사이 숫자를 입력하세요");
             int num = sc.nextInt();
             try {
@@ -174,7 +174,7 @@ public class C19Exception {
                 System.out.println(ex.getMessage());
             }
             System.out.println("-------------------");
-        }
+
 
 
 
