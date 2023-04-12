@@ -59,13 +59,15 @@ public class SungJukV1cServicelmpl implements SungJukV1cService {
             System.out.print("삭제할 학생이름은? ");
             String name = sc.next();
 
-            for (int i = 0; i < sjs.length; i++) {
-                if (sjs[i] != null && sjs[i].getName().equals(name)) {
-                    sjs[i] = null;  // 삭제할 배열요소에 null 대입
-                    System.out.println("\n삭제되었습니다\n");
-                    break;
+            try {
+                for (int i = 0; i < sjs.length; i++) {
+                    if (sjs[i] != null && sjs[i].getName().equals(name)) {
+                        sjs[i] = null;  // 삭제할 배열요소에 null 대입
+                        System.out.println("\n삭제되었습니다\n");
+                        break;
+                    }
                 }
-            }
+            }catch (NullPointerException ex) {}
         }
 
         public void modifySungJuk() {
@@ -105,17 +107,20 @@ public class SungJukV1cServicelmpl implements SungJukV1cService {
             String name = sc.next();
 
             SungJukVO one = null;
-            for (SungJukVO sj : sjs) {
-                if (sj != null && sj.getName().equals(name)) {
-                    one = sj;  break;
+            try {
+                for (SungJukVO sj : sjs) {
+                    if (sj != null && sj.getName().equals(name)) {
+                        one = sj;
+                        break;
+                    }
                 }
-            }
+            }catch (NullPointerException ex) {}
 
-            if (one != null) {
-                System.out.printf("\n %s \n\n", one);
-            } else {
-                System.out.println("\n찾는 데이터가 없습니다!\n");
-            }
+                if (one != null) {
+                    System.out.printf("\n %s \n\n", one);
+                } else {
+                    System.out.println("\n찾는 데이터가 없습니다!\n");
+                }
 
         }
 
@@ -129,7 +134,7 @@ public class SungJukV1cServicelmpl implements SungJukV1cService {
                             sj.getKor(), sj.getEng(), sj.getMat());
                 } // sjs 배열에 저장된 모든 성적데이터 출력
             }catch (NullPointerException ex){
-                System.out.println("정보와 일치하지 않습니다.. 다시 한번 확인하세요");
+                // 이후에 null 값으로 인해 에러가 발생할 수 밖에 없다.
             }
         }
         // 성적 데이터 추가
