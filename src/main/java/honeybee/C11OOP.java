@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class C11OOP {
     public static void main(String[] args) {
+        // 입력한 정보(문자열)를 배열로 바꾸고
+        // 다시 클래스에 정보(배열)를 넘기는 방식
         Scanner sc = new Scanner(System.in);
 
         System.out.println("학생 수 입력");
@@ -21,7 +23,7 @@ public class C11OOP {
         // Arrays.copyOfRange(info, 6, info.length)
         for (Person2 student : students) {
             System.out.println(student.toString());
-            System.out.println(Arrays.toString(student.getInfo())); // 여기가 빈배열이 찍히고 있다.
+            System.out.println(Arrays.toString(student.getInfo()));
         }
 
         // 클래스 종류
@@ -39,10 +41,9 @@ public class C11OOP {
         // 배열로 선언된 멤버 변수를 출력하는 메서드를 생성하고
         // 클래스에서 매개변수부분에 입력된 문자열의 변수를 작성
         // 클래스를 호출한다면 자동화가 될 듯 싶다.
-
-
-
-
+        // 자동화라고 개념을 잘못 이해한 듯하다.
+        // 자동화는 아닌거 같지만
+        // 자동화보다는 편하게 작업하는 느낌
 
     }
 }
@@ -100,7 +101,7 @@ class Person2 {
     }
         // toString : 모든 멤버변수의 값을 출력할때 사용하는 메서드
 
-        @Override
+        @Override // Override를 명시적으로 표현한 방법이다.
         public String toString() {
             String fmt = "%s %s %d %s %s %s\n";
             return String.format(fmt,name,job,age,gender,phone,address,info);
