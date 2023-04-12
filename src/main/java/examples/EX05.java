@@ -58,15 +58,56 @@ class Student{
         this.bth =bth;
         this.dept =dept;
     }
+
+    @Override
+    public String toString() {
+        String fmt = "%d %s %s %s %s %d\n";
+        return String.format(fmt, stuno, name, address, bth, dept, dept);
+    }
+
 }
 // 교수 정보 클래스
 class Professor{
     String prono;
     String name;
     String pro;
+
+    public Professor() {}
+
     public Professor(String prono,String name,String pro){
         this.prono =prono;
         this.name =name;
         this.pro =pro;
     }
+
+    public void setProf(String prono) {
+        this.prono = prono;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMajor(String pro) {
+        this.pro = pro;
+    }
+
+    public String getProno() {
+        return prono;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPro() {
+        return pro;
+    }
+
+    @Override
+    public String toString() {
+        String fmt = "%d %s %s";
+        return String.format(fmt, prono, name, pro);
+    }
+
 }
