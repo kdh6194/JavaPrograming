@@ -1,4 +1,6 @@
-package honeybee;
+package honeybee.project.sungjuk.service;
+
+import honeybee.project.sungjuk.model.SungJukVO;
 
 public interface SungJukV1bService {
 

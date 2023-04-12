@@ -1,4 +1,6 @@
-package honeybee;
+package honeybee.project.sungjuk;
+
+import honeybee.project.sungjuk.service.SungJukV1bServicelmpl;
 
 public class SungJukV1bMain {
     public static void main(String[] args) {

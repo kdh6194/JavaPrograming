@@ -1,4 +1,4 @@
-package honeybee;
+package honeybee.project.sungjuk.model;
 
 public class SungJukVO {
     private String name;
