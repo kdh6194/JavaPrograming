@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class C20Exception {
+public class C19Exception {
 
         // 예외exception와 오류
         // 자바프로그램 작성시 문법에 맞지 않게 코드를 작성하면
