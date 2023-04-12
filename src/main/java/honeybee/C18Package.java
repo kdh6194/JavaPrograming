@@ -90,5 +90,10 @@ public class C18Package {
 
         int h = g.intValue();
         System.out.println(h);  // 언박싱 : 클래스형 -> 기본형
+
+        // 문자열 값을 기본자료형/클래스형으로 변환 : parseXxx
+        int i = Integer.parseInt("12345");
+        Integer j = Integer.parseInt("12345");
+
     }
 }
