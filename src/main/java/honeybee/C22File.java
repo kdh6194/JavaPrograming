@@ -40,23 +40,30 @@ public class C22File {
         String fname = "c:/Java/info.txt";
 
         // 파일쓰기(문자 출력스트림) 객체 생성
+        FileWriter fw = null;
         try {
-            FileWriter fw = new FileWriter(fname);
+            fw = new FileWriter(fname);
 
             fw.write(name+"\n");
             fw.write(height+"\n");
             fw.write(age+"\n");
 
-            // 파일쓰기가 끝나면 작업 종료
-            fw.close();
+
         } catch (Exception e) { // 파일에 내용 쓰기 : write(내용)
             e.getMessage();
+        } finally {
+            // 파일쓰기가 끝나면 작업 종료
+            if (fw != null) try {
+                fw.close();
+            }catch (Exception ex){ }
         }
 
         // 파일에 저장된 데이터 화면에 출력1
         // 파일읽기(문자 입력스트림) 객체 생성
+        FileReader fr = null;
+
         try {
-            FileReader fr = new FileReader(fname);
+            fr = new FileReader(fname);
 
             int ch = 0;
             // 파일에서 하나의 문자를 읽어옴
@@ -65,28 +72,40 @@ public class C22File {
                 // 문자로 변환해서 출력
                 System.out.println((char) ch);
             }
-            fr.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }finally {
+            // 파일쓰기가 끝나면 작업 종료
+            if (fr != null) try {
+                fr.close();
+            } catch (Exception ex) {}
         }
+
         // 파일에 저장된 데이터 화면에 출력2
         // BufferedReader 를 이용하면 입력속도를 높일 수 있음
+        BufferedReader br = null;
         try {
-            FileReader fr = new FileReader(fname);
-            BufferedReader br = new BufferedReader(fr);
+            fr = new FileReader(fname);
+            br = new BufferedReader(fr);
 
             while(br.ready()){ // 읽어올 데이터가 있는지 확인
                 // 만일, 있다면 한 행 씩 읽어서 화면에 출력
                 System.out.println(br.readLine());
             }
 
-            br.close();
-            fr.close();  // 프로그램 시작은 순서대로 끝낼때는 마지막에 들어왔던 순서
-
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }finally {
+            if(br != null) try {
+                br.close();
+            } catch (Exception ex) {}
+            if(br != null) try {
+                fr.close();
+            } catch (Exception ex) {}
         }
 
+        // 프로그램 시작은 순서대로 끝낼때는 마지막에 들어왔던 순서
+        // fr -> br(파일 시작 순서) : br -> fr (파일 종료 순서)
     }
 }
