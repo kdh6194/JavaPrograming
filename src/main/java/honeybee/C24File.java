@@ -21,6 +21,8 @@ public class C24File {
 
             oos.writeObject(std01); // 객체를 파일에 저장
             // toString()을 작성하면 에러가 발생
+            // 아마 객체를 문자열로 저장되어서
+            // 타입에 맞지않아 정보가 출력이 되지않은듯
 
         } catch (Exception e){e.getMessage();}
             finally {
