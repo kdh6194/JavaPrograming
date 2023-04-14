@@ -57,13 +57,13 @@ public class C23File {
 
         // 공백으로 배열에 저장하니 배열이 하나씩 밀려남
         // split 사용시 ,아니면 .을 사용하여 구분하는게 좋음
-        String[] std = stdinfo.split("[ ]");
+        String[] std = stdinfo.split(",");
         System.out.println("학번 : "+std[0]);
         System.out.println("이름 : "+std[1]);
-        System.out.println("주소 : "+std[2]+std[3]);
-        System.out.println("생년월일 : "+std[4]);
-        System.out.println("학과 : "+std[5]);
-        System.out.println("교수 : "+std[6]);
+        System.out.println("주소 : "+std[2]);
+        System.out.println("생년월일 : "+std[3]);
+        System.out.println("학과 : "+std[4]);
+        System.out.println("교수 : "+std[5]);
 
         // 객체의 멤버변수 성질을 잃어버린채
         // 모두 문자형으로 출력됨
@@ -90,7 +90,7 @@ class Student {
 
     @Override
     public String toString() {
-        String fmt = "%d %s %s %s %s %d\n";
+        String fmt = "%d,%s,%s,%s,%s,%d\n";
         return String.format(fmt, stuno, name, addr, bth, dept, prof);
     }
 }

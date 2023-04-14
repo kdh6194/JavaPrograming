@@ -18,12 +18,13 @@ public class C11OOP {
             String[] info = input.split(",");  // 문자열을 한줄로 적는데 ,를 기준으로 나눔
             students[i] = new Person2(); // 설정한 학생수에 따른 정보 저장
             students[i].setPerson(info[0], info[1], Integer.parseInt(info[2]), info[3], info[4], info[5],info);
-            System.out.println(Arrays.toString(info));  // info에 값이 들어갔는지 확인용
+            System.out.println(Arrays.toString(info));  // 값이 배열로 전달되었는지 확인
         }
         // Arrays.copyOfRange(info, 6, info.length)
         for (Person2 student : students) {
+            System.out.println(student);  // student에 값이 들어갔는지 확인용
             System.out.println(student.toString());  // student에 값이 들어갔는지 확인용
-            System.out.println(Arrays.toString(student.getInfo())); // 배열타입에 멤버변수에 들어갔는지 확인용
+            System.out.println(Arrays.toString(student.getInfo())); // 배열타입의 멤버변수에 들어갔는지 확인용
         }
 
         // 클래스 종류
@@ -101,10 +102,10 @@ class Person2 {
         this.info = info;
     }
         // toString : 모든 멤버변수의 값을 출력할때 사용하는 메서드
-
+        // 배열의 경우 형식 지정자로 나타낼 수 없기에 형변환을 해서 출력을 해야한다.
         @Override // Override를 명시적으로 표현한 방법이다.
         public String toString() {
-            String fmt = "%s %s %d %s %s %s\n";
+            String fmt = "%s,%s,%d,%s,%s,%s\n";
             return String.format(fmt,name,job,age,gender,phone,address,info);
         }
 

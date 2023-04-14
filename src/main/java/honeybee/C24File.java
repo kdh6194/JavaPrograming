@@ -4,6 +4,7 @@ import java.io.*;
 
 public class C24File {
     // 직렬화/역직렬화
+
     // JVM 내에 생성된 자바 객체 또는 데이터를
     // JVM 외부에서 사용할 수 있도록 바이트 형태로 변환하는 행위
     public static void main(String[] args) {
