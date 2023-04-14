@@ -57,7 +57,8 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
                 case 3: readOneSungJuk(); break;
                 case 4: modifySungJuk(); break;
                 case 5: removeSungJuk(); break;
-                case 0: System.exit(0); break;
+                case 0: sjdao.writeSungJuk(sjs);
+                        System.exit(0); break;
                 default:
                     System.out.println("\n>> 잘못 입력하셨습니다! <<\n");
             }
@@ -67,7 +68,6 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
             // 이름입력 -> 대상검색 -> 대상제거
             System.out.print("삭제할 학생이름은? ");
             String name = sc.next();
-
 
                 for (SungJukVO sj : sjs) {
                     if (sj.getName().equals(name)) {
@@ -174,6 +174,9 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
 
             // 성적데이터에 파일에 저장
             if (sjdao.saveSungJuk(sj)) System.out.println("\n저장 성공\n");
+
+            // 추가된 성적 데이터를 sjs에도 반영 -> 동기화
+            sjs.add(sj);
 
 
         }
