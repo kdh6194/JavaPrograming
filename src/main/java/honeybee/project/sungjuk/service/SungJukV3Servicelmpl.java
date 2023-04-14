@@ -1,5 +1,7 @@
 package honeybee.project.sungjuk.service;
 
+import honeybee.project.sungjuk.dao.SungJukV3DAO;
+import honeybee.project.sungjuk.dao.SungJukV3DAOlmpl;
 import honeybee.project.sungjuk.model.SungJukVO;
 
 import java.io.*;
@@ -11,16 +13,12 @@ import java.util.Scanner;
 public class SungJukV3Servicelmpl implements SungJukV1cService {
         private Scanner sc = null;
         private List<SungJukVO> sjs = null;
-
-        private String fname = "c:/Java/sungjukv3.dat";
-        private FileWriter fw = null;
-        private FileReader fr = null;
-        private BufferedWriter bw = null;
-        private BufferedReader br = null;
+        private SungJukV3DAO sjdao = null;
 
         public SungJukV3Servicelmpl() {
             sc = new Scanner(System.in);
             sjs = new ArrayList<>();
+            sjdao = new SungJukV3DAOlmpl();
         }
 
         // 성적 프로그램 메뉴
@@ -167,22 +165,10 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
             SungJukVO sj = new SungJukVO(name, kor, eng, mat);
             computeSungJuk(sj);    // 성적 처리
 
-            // 생성된 성적 데이터를 파일에 저장
-            // 파일을 누적해서 작성하려면 추가 기능을 활성화해야됨
-            // FileWriter 두번째 파라미터에 true라 작성하면 활성화됨
-            try {
-                fw = new FileWriter(fname,true);
-                bw = new BufferedWriter(fw);
+            // 성적데이터에 파일에 저장
+            if (sjdao.saveSungJuk(sj)) System.out.println("\n저장 성공\n");
 
-                bw.write(sj.toString());
 
-            } catch (Exception e) {
-                System.out.println("성적 데이터 저장중 오류발생");
-                System.out.println(e.getMessage());
-            }finally {
-                if(bw != null) try {bw.close();} catch (Exception ex) {}
-                if(fw != null) try {fw.close();} catch (Exception ex) {}
-            }
         }
 
         public void computeSungJuk(SungJukVO sj) {
