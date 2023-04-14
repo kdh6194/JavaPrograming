@@ -3,6 +3,8 @@ package honeybee;
 import sun.net.ConnectionResetException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class C26JDBC {
@@ -17,14 +19,7 @@ public class C26JDBC {
 
     public static void main(String[] args) {
 
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("도서명은? ");
-//        String title = sc.next();
-//        System.out.print("저자는? ");
-//        String writer = sc.next();
-//        System.out.print("가격은? ");
-//        int price = sc.nextInt();
-
+        List<Book> bookdata = new ArrayList<>();
         try {
           Class.forName(DRV);
         } catch (Exception e) {
@@ -48,11 +43,11 @@ public class C26JDBC {
 
             // SQL문 실행후 결과집합 받음
             rs = pstmt.executeQuery();  // DML 실행시 사용
-            while(rs.next()){  // getInt에서 해당컬럼의 순서 또는 컬럼명을 작성
-                System.out.println(rs.getInt("bookno")+" ");
-                System.out.println(rs.getString("title")+" ");
-                System.out.println(rs.getString("writer")+" ");
-                System.out.println(rs.getInt("price")+"\n");
+
+            while(rs.next()){
+                Book book = new Book(rs.getInt(1),rs.getString(2)
+                        ,rs.getString(3),rs.getInt(4), rs.getString(5));
+                bookdata.add(book);
             }
 
         } catch (SQLException e) {
@@ -63,16 +58,19 @@ public class C26JDBC {
             if (conn != null) try{conn.close();} catch(Exception ex){}
         }
 
+        for (Book b : bookdata) {
+            System.out.println(b);
+        }
     }
 }
-class newbooks {
+class Book {
     private int bookno;
     private String title;
     private String writer;
     private int price;
     private String regdate;
-    public newbooks() {}
-    public newbooks(int bookno, String title, String writer, int price, String regdate) {
+    public Book() {}
+    public Book(int bookno, String title, String writer, int price, String regdate) {
         this.bookno = bookno;
         this.title = title;
         this.writer = writer;
@@ -80,9 +78,49 @@ class newbooks {
         this.regdate = regdate;
     }
 
+    public int getBookno() {
+        return bookno;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getRegdate() {
+        return regdate;
+    }
+
+    public void setBookno(int bookno) {
+        this.bookno = bookno;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
+    }
+
     @Override
     public String toString() {
-        String fmt = "%s,%d,%d,%s,%d";
+        String fmt = "%d %s %s %d %s";
         return String.format(fmt,bookno,title,writer,price,regdate);
     }
 }
