@@ -55,10 +55,10 @@ public class SungJukV3DAOlmpl implements SungJukV3DAO {
                 // ArrayList 객체에 저장
                String[] val = br.readLine().split("[ ]");
 
-               SungJukVO sj = new SungJukVO(val[0],Integer.parseInt(val[1]),Integer.parseInt(val[2]),Integer.parseInt(val[3]));
-                   sj.setTot(Integer.parseInt(val[4]));
-                   sj.setAvg(Double.parseDouble(val[5]));
-                   sj.setGrd(val[6].charAt(0));
+               SungJukVO sj = new SungJukVO(val[0],Integer.parseInt(val[1]),
+                       Integer.parseInt(val[2]),Integer.parseInt(val[3]),
+                       Integer.parseInt(val[4]),Double.parseDouble(val[5]),
+                       val[6].charAt(0));
 
                sjdata.add(sj);
             }
