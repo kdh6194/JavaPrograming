@@ -57,8 +57,7 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
                 case 3: readOneSungJuk(); break;
                 case 4: modifySungJuk(); break;
                 case 5: removeSungJuk(); break;
-                case 0: sjdao.writeSungJuk(sjs);
-                        System.exit(0); break;
+                case 0: System.exit(0); break;
                 default:
                     System.out.println("\n>> 잘못 입력하셨습니다! <<\n");
             }
@@ -76,7 +75,7 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
                         break;
                     }
                 }
-
+                sjdao.writeSungJuk(sjs);
         }
 
         public void modifySungJuk() {
@@ -107,6 +106,7 @@ public class SungJukV3Servicelmpl implements SungJukV1cService {
                     return;
                     }
             }
+            sjdao.writeSungJuk(sjs);
         }
 
         public void readOneSungJuk() {
