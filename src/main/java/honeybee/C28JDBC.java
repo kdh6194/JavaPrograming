@@ -3,20 +3,27 @@ package honeybee;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class C27JDBC {
+public class C28JDBC {
     private static String DRV = "org.mariadb.jdbc.Driver";
     private static String URL = "jdbc:mariadb://fullstacks.cclckhepzkvp.ap-northeast-2.rds.amazonaws.com:3306/fulstacks";
     private static String USR = "admin";
     private static  String PWD = "fullstack_2023";
 
-    //private static String insertBookSQL = "insert into newbooks(title, writer, price) values (?, ?, ?)";
-    private static String selectBookSQL = "select * from newbooks ";
+    private static String insertBookSQL = "insert into newbooks(title, writer, price) values (?, ?, ?)";
+    private static String selectBookSQL = "select * from newbooks where title like ? order by bookno desc ";
 
 
     public static void main(String[] args) {
-
+        // newbooks 테이블에서 도서명에 'IT CookBook'이 포함된 레코드 조회
         List<Book> bookdata = new ArrayList<>();
+
+        // 검색할 도서명을 입력받음
+        Scanner sc = new Scanner(System.in);
+        System.out.println("조회할 도서명은?");
+        String findbook = sc.nextLine();
+
         try {
           Class.forName(DRV);
         } catch (Exception e) {
@@ -30,8 +37,8 @@ public class C27JDBC {
 
         try {
             conn = DriverManager.getConnection(URL,USR,PWD);
-            //pstmt = conn.prepareStatement(insertBookSQL);
             pstmt = conn.prepareStatement(selectBookSQL);
+            pstmt.setString(1,"%"+findbook+"%");
 
 
             // SQL문 실행 후 결과 확인
@@ -60,14 +67,14 @@ public class C27JDBC {
         }
     }
 }
-class Book {
+class Book2 {
     private int bookno;
     private String title;
     private String writer;
     private int price;
     private String regdate;
-    public Book() {}
-    public Book(int bookno, String title, String writer, int price, String regdate) {
+    public Book2() {}
+    public Book2(int bookno, String title, String writer, int price, String regdate) {
         this.bookno = bookno;
         this.title = title;
         this.writer = writer;
