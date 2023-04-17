@@ -30,20 +30,11 @@ public class C25JDBC {
 
     public static void main(String[] args) {
         // jdbc 드라이버를 메모리에 적재
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("mariadb 용 JDBC 드라이버가 없어요");
-        }
-
         //데이터베이스 서버에 접속하기
-        Connection conn = null;
-        String URL = "jdbc:mariadb://fullstacks.cclckhepzkvp.ap-northeast-2.rds.amazonaws.com:3306/fulstacks";
-        String USR = "admin";
-        String PWD = "fullstack_2023";
+        Connection conn =null;
 
         try {
-            conn = DriverManager.getConnection(URL,USR,PWD);
+            conn = C31JDBCUtil.makeConn();
             if (!conn.isClosed()) System.out.println("mariadb 접속 성공");
         } catch (SQLException e) {
             System.out.println("db 주소나 아이디/비밀번호를 확인하세요");

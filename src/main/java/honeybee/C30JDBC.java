@@ -7,14 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class C30JDBC {
-    private static String DRV = "org.mariadb.jdbc.Driver";
-    private static String URL = "jdbc:mariadb://fullstacks.cclckhepzkvp.ap-northeast-2.rds.amazonaws.com:3306/fulstacks";
-    private static String USR = "admin";
-    private static  String PWD = "fullstack_2023";
-
     private static String updateBookSQL = "update newbooks set title = ? , writer = ? , price = ? where bookno = ?";
-
-
     public static void main(String[] args) {
         // newbooks 테이블에서 입력받은
         // 도서정보(도서번호, 도서명, 저자, 가격)를
@@ -31,19 +24,11 @@ public class C30JDBC {
         System.out.println("수정할 가격은?");
         int price = sc.nextInt();
 
-
-        try {
-          Class.forName(DRV);
-        } catch (Exception e) {
-            System.out.println("mariadb 용 JDBC 드라이버가 없어요!");
-        }
-
         Connection conn = null;
         PreparedStatement pstmt = null;
 
-
         try {
-            conn = DriverManager.getConnection(URL,USR,PWD);
+            conn = C31JDBCUtil.makeConn();
             pstmt = conn.prepareStatement(updateBookSQL);
             // 두번째 인자는 데이터베이스에 컬럼명이 아니라 입력받는 변수명을 받아와야한다.
             // 그리고 ? 순서에 따라서 값을 넣어줘야 한다. 입력받는 순서가 아니다.
@@ -51,7 +36,6 @@ public class C30JDBC {
             pstmt.setString(2,writer);
             pstmt.setInt(3,price);
             pstmt.setInt(4,bookno);
-
 
             // SQL문 실행 후 결과 확인
             int del = pstmt.executeUpdate();  // DML 실행시 사용
@@ -61,8 +45,7 @@ public class C30JDBC {
         } catch (SQLException e) {
             System.out.println("db 주소나 아이디/비밀번호를 확인하세요");
         }finally {
-            if (pstmt != null) try{pstmt.close();} catch(Exception ex){}
-            if (conn != null) try{conn.close();} catch(Exception ex){}
+            C31JDBCUtil.closeConn(null,pstmt,conn);
         }
 
 

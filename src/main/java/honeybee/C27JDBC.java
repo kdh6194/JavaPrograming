@@ -5,38 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class C27JDBC {
-    private static String DRV = "org.mariadb.jdbc.Driver";
-    private static String URL = "jdbc:mariadb://fullstacks.cclckhepzkvp.ap-northeast-2.rds.amazonaws.com:3306/fulstacks";
-    private static String USR = "admin";
-    private static  String PWD = "fullstack_2023";
-
-    //private static String insertBookSQL = "insert into newbooks(title, writer, price) values (?, ?, ?)";
     private static String selectBookSQL = "select * from newbooks ";
-
-
     public static void main(String[] args) {
 
         List<Book> bookdata = new ArrayList<>();
-        try {
-          Class.forName(DRV);
-        } catch (Exception e) {
-            System.out.println("mariadb 용 JDBC 드라이버가 없어요!");
-        }
 
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-
         try {
-            conn = DriverManager.getConnection(URL,USR,PWD);
-            //pstmt = conn.prepareStatement(insertBookSQL);
+            conn = C31JDBCUtil.makeConn();
             pstmt = conn.prepareStatement(selectBookSQL);
-
-
-            // SQL문 실행 후 결과 확인
-//            int cnt = pstmt.executeUpdate(); // DML 실행시 사용
-//            System.out.println("데이터 입력확인" + cnt);
 
             // SQL문 실행후 결과집합 받음
             rs = pstmt.executeQuery();  // DML 실행시 사용
@@ -50,9 +30,7 @@ public class C27JDBC {
         } catch (SQLException e) {
             System.out.println("db 주소나 아이디/비밀번호를 확인하세요");
         }finally {
-            if (rs != null) try{rs.close();} catch(Exception ex){}
-            if (pstmt != null) try{pstmt.close();} catch(Exception ex){}
-            if (conn != null) try{conn.close();} catch(Exception ex){}
+            C31JDBCUtil.closeConn(rs,pstmt,conn);
         }
 
         for (Book b : bookdata) {
