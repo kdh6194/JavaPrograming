@@ -64,7 +64,8 @@ public class C32JDBC {
 //        if (cnt1 >0) System.out.println("사원정보 삭제 성공");
 
         // 사원수정
-        System.out.print("수정할 사원번호는? ");
+
+        System.out.print("수정이 필요한 사원번호는? ");
         int mempno = sc.nextInt();
         System.out.print("수정할 LastName? ");
         String mfname = sc.next();
@@ -74,25 +75,11 @@ public class C32JDBC {
         String memail = sc.next();
         System.out.print("수정할 전화번호는? ");
         String mphone = sc.next();
-        System.out.print("수정할 고용일은? ");
-        String mhdate = sc.next();
-        System.out.print("수정할 직무는? ");
-        String mjobid = sc.next();
-        System.out.print("수정할 연봉은? ");
-        int msal = sc.nextInt();
-        System.out.print("수정할 추가금은? ");
-        double mcomm = sc.nextDouble();
-        System.out.print("수정할 상사는? ");
-        int mmgrid = sc.nextInt();
-        System.out.print("수정할 담당과는? ");
-        int mdeptno = sc.nextInt();
 
-        EMPVO emp3 = new EMPVO(mempno,mfname,mlname,memail,mphone,mhdate,mjobid,msal,mcomm
-                ,mmgrid,mdeptno);
+        EMPVO emp3 = new EMPVO(mempno,mfname,mlname,memail,mphone);
+        //,null,null,0,0.0,0,0);
        int cnt2 = EMPDAOImpl.updateEmp(emp3);
         if (cnt2 >0) System.out.println("정보 수정 성공");
-
-
 
 
 
@@ -126,6 +113,15 @@ class EMPVO{
         this.comm = comm;
         this.mgrid = mgrid;
         this.deptno = deptno;
+    }
+
+
+    public EMPVO(int mempno, String mfname, String mlname, String memail, String mphone) {
+        this.empno = mempno;
+        this.fname = mfname;
+        this.lname = mlname;
+        this.email = memail;
+        this.phone = mphone;
     }
 
     public int getEmpno() {
@@ -234,7 +230,7 @@ class EMPDAOImpl {
     private static String selectSQL = "select EMPLOYEE_ID, FIRST_NAME, EMAIL, JOB_ID, department_id from EMPLOYEES ";
     private static String selectOneSQL = "select * from EMPLOYEES where EMPLOYEE_ID = ? order by EMPLOYEE_ID desc ";
     private static String deleteSQL = "delete from EMPLOYEES where EMPLOYEE_ID = ?";
-    private static String updateSQL = "update EMPLOYEES set EMPLOYEE_ID = ?, FIRST_NAME = ? , LAST_NAME = ? , EMAIL = ? , PHONE_NUMBER = ? , HIRE_DATE = ? , JOB_ID = ? , SALARY = ?, COMMISSION_PCT = ?,MANAGER_ID=?,department_id=? where EMPLOYEE_ID = ?";
+    private static String updateSQL = "update EMPLOYEES set FIRST_NAME = ?, LAST_NAME = ?, EMAIL = ?, PHONE_NUMBER = ? where EMPLOYEE_ID = ?";
 
     public static int insertEmp(EMPVO emp) {
         int result = 0;
@@ -356,17 +352,12 @@ class EMPDAOImpl {
             conn = C33JDBC.mkConn();
             pstmt = conn.prepareStatement(updateSQL);
 
-            pstmt.setInt(1, emp.getEmpno());
-            pstmt.setString(2, emp.getFname());
-            pstmt.setString(3, emp.getLname());
-            pstmt.setString(4, emp.getEmail());
-            pstmt.setString(5, emp.getPhone());
-            pstmt.setString(6, emp.getHdate());
-            pstmt.setString(7, emp.getJobid());
-            pstmt.setInt(8, emp.getSal());
-            pstmt.setDouble(9, emp.getComm());
-            pstmt.setInt(10, emp.getMgrid());
-            pstmt.setInt(11, emp.getDeptno());
+
+            pstmt.setString(1, emp.getFname());
+            pstmt.setString(2, emp.getLname());
+            pstmt.setString(3, emp.getEmail());
+            pstmt.setString(4, emp.getPhone());
+            pstmt.setInt(5, emp.getEmpno());
 
             result = pstmt.executeUpdate();  // DML 실행시 사용
             System.out.println("데이터 수정확인 : "+ result);
