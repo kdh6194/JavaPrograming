@@ -1,6 +1,6 @@
 package honeybee.project.sungjuk.model;
-
 public class SungJukVO {
+    private int sjno;
     private String name;
     private int kor;
     private int eng;
@@ -8,6 +8,7 @@ public class SungJukVO {
     private int tot;
     private double avg;
     private char grd;
+    private String regdate;
 
     public SungJukVO() {
     }
@@ -20,13 +21,11 @@ public class SungJukVO {
     }
 
     public SungJukVO(String name, int kor, int eng, int mat, int tot, double avg, char grd) {
-        this(name, kor, eng, mat); // 매개변수와 일치한 값을 가져온다. 인거 같음
+        this(name, kor, eng, mat);
         this.tot = tot;
         this.avg = avg;
         this.grd = grd;
     }
-
-
 
     public String getName() {
         return name;
@@ -84,10 +83,26 @@ public class SungJukVO {
         this.grd = grd;
     }
 
-    @Override
-    public String toString() {
-        String fmt = "%s %d %d %d %d %.1f %s\n";
-        return String.format(fmt, name, kor, eng, mat, tot, avg, grd);
+    public int getSjno() {
+        return sjno;
     }
 
+    public void setSjno(int sjno) {
+        this.sjno = sjno;
+    }
+
+    public String getRegdate() {
+        return regdate;
+    }
+
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
+    }
+
+    @Override
+    public String toString() {
+        String fmt = "%d %s %d %d %d %d %.1f %s %s\n";
+        return String.format(fmt,
+                sjno, name, kor, eng, mat, tot, avg, grd, regdate);
+    }
 }
