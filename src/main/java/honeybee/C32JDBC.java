@@ -83,7 +83,7 @@ public class C32JDBC {
         String mphone = sc.next();
 
         EMPVO emp3 = new EMPVO(mempno,mfname,mlname,memail,mphone);
-        //,null,null,0,0.0,0,0);
+        //,null,null,0,0.0,0,0);  따로 생성자를 만들지 않은경우
        int cnt2 = empdao.updateEmp(emp3);
         if (cnt2 >0) System.out.println("정보 수정 성공");
 
